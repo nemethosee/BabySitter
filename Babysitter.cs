@@ -32,6 +32,13 @@ namespace Babysitter
             {
                 TotalPay = "Error: Incorrect family index!";
             }
+            else
+            {
+                if (StartHour < 17)
+                {
+                    TotalPay = "Error: Invalid start hour (before 5PM)!";
+                }
+            }
 
             return TotalPay;
         }
