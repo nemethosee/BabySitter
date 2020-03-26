@@ -28,6 +28,11 @@ namespace Babysitter
         {
             string TotalPay = "0.00 $";
 
+            if (Family != "A" && Family != "B" && Family != "C")
+            {
+                TotalPay = "Error: Incorrect family index!";
+            }
+
             return TotalPay;
         }
     }
