@@ -7,9 +7,19 @@ namespace UnitTest
     [TestClass]
     public class UnitTest
     {
-        [TestMethod]
-        public void TestMethod()
+        BabySitter BabySitterObj;
+
+        [TestInitialize]
+        public void InitializeTests()
         {
+            BabySitterObj = new BabySitter();
         }
+
+        [TestMethod]
+        public void NoHoursWorkedNoPayment()
+        {
+            Assert.AreEqual("0.00 $", BabySitterObj.CalculateTotalPay("A", 0, 0));
+        }
+
     }
 }
