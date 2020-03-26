@@ -24,20 +24,31 @@ namespace Babysitter
         //              byte    EndHour - exact hour when the babysitter finishes
         //
         // Output   :   string  TotalPay
+        
+        
+        private bool ValidateFamilyIndex(string Family)
+        {
+            if (Family != "A" && Family != "B" && Family != "C") return false;
+            else return true;
+        }
+
+        private bool ValidateStartEndTime(byte StartHour, byte EndHour)
+        {
+            if ((StartHour > 11) || (EndHour > 11) || (StartHour >= EndHour)) return false;
+            else return true;
+        }
+
         public string CalculateTotalPay(string Family, byte StartHour, byte EndHour)
         {
             string TotalPay = "0.00 $";
 
-            if (Family != "A" && Family != "B" && Family != "C")
+            if (!ValidateFamilyIndex(Family))
             {
-                TotalPay = "Error: Incorrect family index!";
+                return "Error: Incorrect family index!";
             }
-            else
+            if (!ValidateStartEndTime(StartHour, EndHour))
             {
-                if (StartHour < 17)
-                {
-                    TotalPay = "Error: Invalid start hour (before 5PM)!";
-                }
+                return "Error: Invalid start or end hour!";
             }
 
             return TotalPay;

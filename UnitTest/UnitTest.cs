@@ -18,7 +18,7 @@ namespace UnitTest
         [TestMethod]
         public void NoHoursWorkedNoPayment()
         {
-            Assert.AreEqual("0.00 $", BabySitterObj.CalculateTotalPay("A", 17, 4));
+            Assert.AreEqual("0.00 $", BabySitterObj.CalculateTotalPay("A", 0, 1));
         }
 
         [TestMethod]
@@ -28,9 +28,22 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void StartTimeIsBefor5PM()
+        public void InvalidStartTime()
         {
-            Assert.AreEqual("Error: Invalid start hour (before 5PM)!", BabySitterObj.CalculateTotalPay("A", 0, 0));
+            Assert.AreEqual("Error: Invalid start or end hour!", BabySitterObj.CalculateTotalPay("A", 12, 0));
         }
+
+        [TestMethod]
+        public void InvalidEndTime()
+        {
+            Assert.AreEqual("Error: Invalid start or end hour!", BabySitterObj.CalculateTotalPay("A", 0, 12));
+        }
+
+        [TestMethod]
+        public void StartTimeIsAfterEndTime()
+        {
+            Assert.AreEqual("Error: Invalid start or end hour!", BabySitterObj.CalculateTotalPay("A", 10, 9));
+        }
+
     }
 }
